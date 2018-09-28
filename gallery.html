@@ -1,0 +1,437 @@
+<html>
+
+<head>
+  <link rel="stylesheet" media="all" type="text/css" href="css/main.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="cssc/css.css">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      color: #707070;
+      background-color: #fff;
+    }
+
+    .container {
+      margin: 0 auto;
+      max-width: 700px;
+      maxS-height: 100vh;
+      background-color: white;
+    }
+    /* Useful Classes */
+
+    .xy-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .transition {
+      transition: all 350ms ease-in-out;
+    }
+
+    .r-3-2 {
+      width: 100%;
+      padding-bottom: 100%;
+      background-color: #ddd;
+    }
+
+    .image-holder {
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+    /* Main Styles */
+
+    .gallery-wrapper {
+      position: relative;
+      overflow: hidden;
+      width: 90%;
+    }
+
+    .gallery {
+      position: relative;
+      white-space: nowrap;
+      font-size: 0;
+    }
+
+    .item-wrapper {
+      cursor: pointer;
+      width: 9%;
+      /* arbitrary value */
+      display: inline-block;
+      background-color: white;
+    }
+
+    .gallery-item {
+      opacity: 0.5;
+    }
+
+    .gallery-item.active {
+      opacity: 1;
+    }
+
+    .controls {
+      font-size: 0;
+      border-top: none;
+    }
+
+    .move-btn {
+      display: inline-block;
+      width: 50%;
+      border: none;
+      color: #ccc;
+      background-color: transparent;
+      padding: 0.2em 1.5em;
+    }
+
+    .move-btn:first-child {
+      border-right: none;
+    }
+
+    .move-btn.left {
+      cursor: w-resize;
+    }
+
+    .move-btn.right {
+      cursor: e-resize;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    nav {
+
+      border: 1px solid #dedede;
+      border-radius: 4px;
+      box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
+      color: #fff;
+      margin: 8px 22px 8px 22px;
+      overflow: hidden;
+      widdth: 100%;
+      float: right;
+    }
+
+    a {
+      color: #FF7519;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a hover {
+      color: #FFF;
+      text-decoration: underline;
+    }
+
+    .current {
+      color: #333;
+      text-decoration: underline;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    nav ul li {
+      display: inline-block;
+      float: left;
+      padding: 10px;
+    }
+
+    header {
+      height: 50px;
+      padding: 0px 25px 10px 0;
+      z-index: 100;
+      opacity: 0.90;
+      -moz-border-radius: 0px;
+      -webkit-border-radius: 0px;
+      border-radius: 0px;
+      font-family: gouldy30;
+      -moz-box-shadow: #135352 2px 2px 10px;
+      -webkit-box-shadow: #135352 2px 2px 10px;
+      box-shadow: #135352 2px 2px 10px;
+      background-color: rgba(255, 255, 255, 0.7);
+      margin-bottom: .7em;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <ul>
+          <li role="menuitem"><a tabindex="-1" href="index.html">Home</a></li>
+          <li><a href="source.html">Resources</a></li>
+          <li role="menuitem"><a tabindex="-1" href="#" class="current">Gallery</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <h1></h1>
+  <div class="container">
+    <div class="gallery-wrapper">
+      <div class="gallery">
+        <div class="item-wrapper">
+          <figure class="gallery-item image-holder r-3-2 active transition"></figure>
+        </div>
+        <div class="item-wrapper">
+          <figure class="gallery-item image-holder r-3-2 transition"></figure>
+        </div>
+        <div class="item-wrapper">
+          <figure class="gallery-item image-holder r-3-2 transition"></figure>
+        </div>
+        <div class="item-wrapper">
+          <figure class="gallery-item image-holder r-3-2 transition"></figure>
+        </div>
+        <div class="item-wrapper">
+          <figure class="gallery-item image-holder r-3-2"></figure>
+        </div>
+        <div class="item-wrapper">
+          <figure class="gallery-item image-holder r-3-2 transition"></figure>
+        </div>
+        <div class="item-wrapper">
+          <figure class="gallery-item image-holder r-3-2 transition"></figure>
+        </div>
+        <div class="item-wrapper">
+          <figure class="gallery-item image-holder r-3-2 transition"></figure>
+        </div>
+        <div class="item-wrapper">
+          <figure class="gallery-item image-holder r-3-2 transition"></figure>
+        </div>
+        <div class="item-wrapper">
+          <figure class="gallery-item image-holder r-3-2 transition"></figure>
+        </div>
+      </div>
+    </div>
+    <div class="feature">
+      <figure class="featured-item image-holder r-3-2 transition"></figure>
+    </div>
+
+
+
+    <div class="controls">
+      <button class="move-btn left">&larr;</button>
+      <button class="move-btn right">&rarr;</button>
+    </div>
+    <h1>Church gallery</h1>
+  </div>
+  <script>
+    var gallery = document.querySelector('.gallery');
+    var galleryItems = document.querySelectorAll('.gallery-item');
+    var numOfItems = gallery.children.length;
+    var itemWidth = 23; // percent: as set in css
+
+    var featured = document.querySelector('.featured-item');
+
+    var leftBtn = document.querySelector('.move-btn.left');
+    var rightBtn = document.querySelector('.move-btn.right');
+    var leftInterval;
+    var rightInterval;
+
+    var scrollRate = 0.2;
+    var left;
+
+    function selectItem(e) {
+      if (e.target.classList.contains('active')) return;
+
+      featured.style.backgroundImage = e.target.style.backgroundImage;
+
+      for (var i = 0; i < galleryItems.length; i++) {
+        if (galleryItems[i].classList.contains('active'))
+          galleryItems[i].classList.remove('active');
+      }
+
+      e.target.classList.add('active');
+    }
+
+    function galleryWrapLeft() {
+      var first = gallery.children[0];
+      gallery.removeChild(first);
+      gallery.style.left = -itemWidth + '%';
+      gallery.appendChild(first);
+      gallery.style.left = '0%';
+    }
+
+    function galleryWrapRight() {
+      var last = gallery.children[gallery.children.length - 1];
+      gallery.removeChild(last);
+      gallery.insertBefore(last, gallery.children[0]);
+      gallery.style.left = '-23%';
+    }
+
+    function moveLeft() {
+      left = left || 0;
+
+      leftInterval = setInterval(function() {
+        gallery.style.left = left + '%';
+
+        if (left > -itemWidth) {
+          left -= scrollRate;
+        } else {
+          left = 0;
+          galleryWrapLeft();
+        }
+      }, 1);
+    }
+
+    function moveRight() {
+      //Make sure there is element to the leftd
+      if (left > -itemWidth && left < 0) {
+        left = left - itemWidth;
+
+        var last = gallery.children[gallery.children.length - 1];
+        gallery.removeChild(last);
+        gallery.style.left = left + '%';
+        gallery.insertBefore(last, gallery.children[0]);
+      }
+
+      left = left || 0;
+
+      leftInterval = setInterval(function() {
+        gallery.style.left = left + '%';
+
+        if (left < 0) {
+          left += scrollRate;
+        } else {
+          left = -itemWidth;
+          galleryWrapRight();
+        }
+      }, 1);
+    }
+
+    function stopMovement() {
+      clearInterval(leftInterval);
+      clearInterval(rightInterval);
+    }
+
+    leftBtn.addEventListener('mouseenter', moveLeft);
+    leftBtn.addEventListener('mouseleave', stopMovement);
+    rightBtn.addEventListener('mouseenter', moveRight);
+    rightBtn.addEventListener('mouseleave', stopMovement);
+
+
+    //Start this baby up
+    (function init() {
+      var images = [
+        'img/1030.jpg',
+        'img/348.jpg',
+        'img/2.jpg',
+        'img/i55.jpg',
+        'img/4.jpg',
+        'img/IMG.jpg',
+        'img/23.jpg',
+        'img/y.jpg',
+        'img/i2.jpg',
+        'img/318.jpg',
+        'img/i1.jpg',
+        'img/i6.jpg',
+        'img/IMG.jpg',
+        'img/i3.jpg',
+        'img/i5.jpg',
+        'img/i2.jpg',
+        'img/i1.jpg',
+        'img/i6.jpg',
+        'img/i55.jpg',
+        'img/i3.jpg',
+        'img/i5.jpg',
+        'img/i2.jpg',
+      ];
+
+      //Set Initial Featured Image
+      featured.style.backgroundImage = 'url(' + images[0] + ')';
+
+      //Set Images for Gallery and Add Event Listeners
+      for (var i = 0; i < galleryItems.length; i++) {
+        galleryItems[i].style.backgroundImage = 'url(' + images[i] + ')';
+        galleryItems[i].addEventListener('click', selectItem);
+      }
+    })();
+  </script>
+
+</body>
+<footer class="container-fluid ">
+  <div class="row ">
+    <div class="col-md-4 ">
+      <a href="# "><img class="img-responsive " src="img/footlogo.png "></a>
+      <p>Exodus SDA church is a part of the global denomination of Seventh-day Adventists.<a href="http://www.adventist.org/ "> www.adventist.org</a> </p>
+    </div>
+    <div class="col-md-4 ">
+
+      <div>
+        <div class="text-center " style="padding-bottom:1em; ">
+          <table class="table ">
+            <tbody>
+              <!--<tr style="color:#eee; border-top: #555 solid 2px; ">
+                  <th style="font-weight:600; ">Pastor</th>
+                  <td>+254 718 169883</td>
+                </tr>-->
+              <tr style="color:#eee; border-top: #555 solid 2px; ">
+                <th style="font-weight:600; ">Elder</th>
+                <td>+254 710 762 653</td>
+              </tr>
+              <tr style="color:#eee; border-top: #555 solid 2px; ">
+                <th style="font-weight:600; ">Church Clerk</th>
+                <td>+254 720 341 578</td>
+              </tr>
+              <tr style="color:#eee; border-top: #555 solid 2px; ">
+                <th style="font-weight:600; ">Admin</th>
+                <td>keighb@live.com</td>
+              </tr>
+              <tr style="color:#eee; border-top: #555 solid 2px; ">
+                <th style="font-weight:600; ">Email</th>
+                <td>exodussda@gmail.com</td>
+              </tr>
+              <tr style="color:#eee; border-top: #555 solid 2px; ">
+                <th style="font-weight:600; ">Address</th>
+                <td>18785-20100, Nakuru</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 ">
+      <h5 style="color:white ">Services Schedule</h5>
+      <table class="table ">
+        <!--<thead><tr style="color:#eee; border-top: #555 solid 2px; "><th colspan="2 "><h5 class="text-centered ">Sabbath</h5></th></tr></thead>-->
+        <tbody>
+          <tr style="color:#eee; border-top: #555 solid 2px; ">
+            <th colspan="1 ">Sabbath School<span class="pull-right ">:</span></th>
+            <td colspan="2 ">Every Saturday from 8.00 am - 9.30am</td>
+          </tr>
+          <tr style="color:#eee; border-top: #555 solid 2px; ">
+            <th colspan="1 ">Sabbath Worship Service<span class="pull-right ">:</span></th>
+            <td>Every Saturday from 10.30am - 12.15pm</td>
+          </tr>
+          <tr style="color:#eee; border-top: #555 solid 2px; ">
+            <th colspan="1 ">Sabbath Afternoon<span class="pull-right ">:</span></th>
+            <td>Every Saturday from 2.00pm - 5.00pm</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr style="color:#eee; border-top: #555 solid 2px; ">
+            <td style="font-style:italic; " colspan="2 ">Thursday(s) at selected households</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</footer>
+<footer class="second ">
+  <p>Exodus Seventh-Day Adventist Church-Ex Margaret.</p>
+  <p>&copy exodus@2018</p>
+</footer>
+
+</html>

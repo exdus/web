@@ -1,0 +1,43 @@
+.img-thumbnail {
+      height: 170px;
+    }
+
+    nav {
+      float: right;
+    }
+
+    a {
+      color: #FF7519;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a hover {
+      color: #FFF;
+      text-decoration: underline;
+    }
+
+    .current {
+      color: #FFF;
+      text-decoration: underline;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    nav ul li {
+      display: inline-block;
+      float: left;
+      padding: 10px;
+    }
+
+    header {
+      height: 50px;
+      padding: 0px 25px 10px 0;
+      color: #fff;
+      #margin-bottom: 2em;
+      background: #4F483E;
+      z-index: 100;
+      opacity: 0.90;
+    }
